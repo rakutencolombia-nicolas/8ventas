@@ -3,48 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>8 Ventas — Ventas al por mayor · Bogotá</title>
+  <title>8Ventas.com — Ventas al por mayor · Bogotá</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       min-height: 100vh;
-      background: #071220;
+      background: #060e1a;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: #fff;
       text-align: center;
       padding: 2rem;
+      overflow: hidden;
     }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 30% 40%, #0d2a4a 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 60%, #0a1f35 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%   { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 100%;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     .logo {
-      font-family: Arial, sans-serif;
+      font-size: clamp(42px, 10vw, 80px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .logo span.eight { color: #ffffff; }
+    .logo span.ventas { color: #3b8fd4; }
+    .logo span.dot { color: #25D366; }
+    .logo span.com {
+      color: #25D366;
+      font-size: 0.55em;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .tagline {
       font-size: 13px;
-      letter-spacing: 5px;
-      color: #7aafd4;
-      margin-bottom: 3rem;
-      text-transform: uppercase;
-    }
-    h1 {
-      font-size: clamp(28px, 6vw, 52px);
-      font-weight: 400;
-      color: #ffffff;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-    .sub {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      color: #8ab0d0;
-      margin-bottom: 0.5rem;
-    }
-    .ciudad {
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      letter-spacing: 4px;
       color: #4a7a9b;
-      margin-bottom: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 3.5rem;
+      font-weight: 400;
     }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #3b8fd4, #25D366);
+      margin: 0 auto 3.5rem;
+      border-radius: 2px;
+    }
+
+    .info-cards {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      flex: 1;
+      min-width: 130px;
+      max-width: 180px;
+      transition: background 0.3s, transform 0.3s;
+      cursor: default;
+    }
+
+    .card:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-4px);
+    }
+
+    .card-icon { font-size: 22px; margin-bottom: 0.4rem; }
+    .card-label {
+      font-size: 11px;
+      color: #4a7a9b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.3rem;
+    }
+    .card-value { font-size: 14px; color: #c8dff0; font-weight: 600; }
+
     .wa-btn {
       display: inline-flex;
       align-items: center;
@@ -52,34 +131,68 @@
       background: #25D366;
       color: #fff;
       text-decoration: none;
-      padding: 16px 36px;
+      padding: 18px 40px;
       border-radius: 50px;
-      font-family: Arial, sans-serif;
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: transform 0.2s, background 0.2s;
+      animation: glow 2.5s ease-in-out infinite;
+      margin-bottom: 1rem;
     }
-    .hint {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      color: #355a72;
-      margin-top: 1.2rem;
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
     }
+
+    .wa-btn:hover { background: #1ebe5d; transform: scale(1.05); }
+    .wa-btn:active { transform: scale(0.98); }
+
+    .hint { font-size: 12px; color: #2a5a72; margin-top: 0.5rem; }
+
+    .footer { margin-top: 4rem; font-size: 11px; color: #1e3a50; letter-spacing: 1px; }
   </style>
 </head>
 <body>
-  <p class="logo">8 Ventas</p>
-  <h1>Ventas al por mayor</h1>
-  <p class="sub">Contáctanos para pedidos mayoristas</p>
-  <p class="ciudad">📍 Bogotá, Colombia</p>
-  <a class="wa-btn"
-     href="https://wa.me/573134947008?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ventas%20al%20por%20mayor"
-     target="_blank" rel="noopener">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L0 24l6.335-1.509A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.648-.493-5.177-1.354l-.369-.217-3.763.896.944-3.659-.24-.376A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-    </svg>
-    313 494 7008
-  </a>
-  <p class="hint">Toca el botón para escribirnos directo por WhatsApp</p>
+  <div class="container">
+
+    <div class="logo">
+      <span class="eight">8</span><span class="ventas">Ventas</span><span class="dot">.</span><span class="com">com</span>
+    </div>
+    <p class="tagline">Distribución mayorista · Colombia</p>
+    <div class="divider"></div>
+
+    <div class="info-cards">
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <div class="card-label">Especialidad</div>
+        <div class="card-value">Ventas al por mayor</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <div class="card-label">Ubicación</div>
+        <div class="card-value">Bogotá, Colombia</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-label">Respuesta</div>
+        <div class="card-value">Inmediata</div>
+      </div>
+    </div>
+
+    <a class="wa-btn"
+       href="https://wa.me/573134947008?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20ventas%20al%20por%20mayor"
+       target="_blank" rel="noopener">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L0 24l6.335-1.509A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.648-.493-5.177-1.354l-.369-.217-3.763.896.944-3.659-.24-.376A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      313 494 7008
+    </a>
+
+    <p class="hint">Toca para escribirnos directo por WhatsApp</p>
+    <div class="footer">© 2025 8Ventas.com · Todos los derechos reservados</div>
+  </div>
 </body>
 </html>
